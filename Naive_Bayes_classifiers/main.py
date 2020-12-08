@@ -4,7 +4,20 @@ import string
 import matplotlib.pyplot as plt
 import itertools
 
+
 data = pd.read_csv("Words.csv")
+
+
+def get_user_input():
+    print("Please, enter the text (double enter to finish the input):")
+    lines = []
+    while True:
+        line = input()
+        if line:
+            lines.append(line)
+        else:
+            break
+    return ' '.join(lines)
 
 
 def get_freq_dict_class1():
@@ -34,9 +47,9 @@ def split_text(text):
     return split_arr
 
 
-def get_freq_dict(list):
+def get_freq_dict(list_of_words):
     freq = {}
-    for item_d in list:
+    for item_d in list_of_words:
         if item_d in freq:
             freq[item_d] += 1
         else:
@@ -72,7 +85,13 @@ def dict_to_bar_chart(info, title):
     plt.show()
 
 
+def calculate_bayes_classifier(input_text):
+    word_arr = split_text(input_text)
+    print(word_arr)
+
+
 def main():
+    calculate_bayes_classifier(get_user_input())
     draw_dict_class_1()
     draw_dict_class_2()
 
